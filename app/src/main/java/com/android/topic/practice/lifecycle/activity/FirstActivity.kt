@@ -1,18 +1,35 @@
 package com.android.topic.practice.lifecycle.activity
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import com.android.topic.practice.R
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.android.topic.practice.common.showLog
+import com.android.topic.practice.databinding.ActivityFirstBinding
 
-class FirstActivity : ComponentActivity() {
+class FirstActivity : AppCompatActivity() {
 
-    val TAG = "FirstActivity"
+    private lateinit var binding: ActivityFirstBinding
+    val TAG = "TagForCheckActivityLifecycle"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_first)
+        binding = ActivityFirstBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         showLog(tag = TAG,"FirstActivity onCreate()")
+
+        binding.openDialog.setOnClickListener {
+            showAlertDialog()
+        }
+
+        binding.openSecondActivity.setOnClickListener {
+            startActivity(Intent(this@FirstActivity,SecondActivity::class.java))
+        }
+
+        binding.openSecondActivityFinishFirst.setOnClickListener {
+            startActivity(Intent(this@FirstActivity,SecondActivity::class.java))
+            finish()
+        }
     }
 
     override fun onStart() {
@@ -43,5 +60,21 @@ class FirstActivity : ComponentActivity() {
     override fun onDestroy() {
         super.onDestroy()
         showLog(tag = TAG,"FirstActivity onDestroy()")
+    }
+
+    private fun showAlertDialog(){
+        val builder = AlertDialog.Builder(this)
+            .setTitle("Alert Title")
+            .setMessage("This is an alert message.")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+
+        // Show the dialog
+        val dialog = builder.create()
+        dialog.show()
     }
 }

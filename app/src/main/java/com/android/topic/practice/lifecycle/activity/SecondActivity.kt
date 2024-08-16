@@ -1,5 +1,6 @@
 package com.android.topic.practice.lifecycle.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -7,15 +8,30 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.android.topic.practice.R
 import com.android.topic.practice.common.showLog
+import com.android.topic.practice.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity() {
 
-    val TAG = "SecondActivity"
+    private lateinit var binding: ActivitySecondBinding
+    val TAG = "TagForCheckActivityLifecycle"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_second)
+        binding = ActivitySecondBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         showLog(tag = TAG,"SecondActivity onCreate()")
+
+        binding.backToFirstActivity.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.startFirstActivity.setOnClickListener {
+            startActivity(Intent(this@SecondActivity,FirstActivity::class.java))
+        }
+        binding.startFirstActivityAndFinishThis.setOnClickListener {
+            startActivity(Intent(this@SecondActivity,FirstActivity::class.java))
+            finish()
+        }
     }
 
     override fun onStart() {

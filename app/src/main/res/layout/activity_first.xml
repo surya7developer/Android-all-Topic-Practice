@@ -5,16 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:text="First Activity"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/openSecondActivity"
         android:text="Open Second Activity"
         android:layout_margin="20dp"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/openSecondActivityFinishFirst"
+        android:text="Open Second Activity And Finish First Activity"
+        android:layout_margin="20dp"
+        android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/openDialog"
         android:text="Open Dialog"
+        android:textAllCaps="false"
         android:layout_margin="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
