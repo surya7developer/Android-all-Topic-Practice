@@ -26,7 +26,5 @@ class FragmentContainerViewActivity : AppCompatActivity() {
                 .replace(R.id.fragment_container, fragment)
                 .commit()
         }
-
     }
-
 }

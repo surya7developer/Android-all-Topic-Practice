@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "AndroidAllTopicsPracticeDemo"
 include(":app")
- 
+include(":kotlinCore")
+include(":JavaCore")

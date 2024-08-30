@@ -7,6 +7,8 @@ import com.android.topic.practice.extension.openScreen
 import com.android.topic.practice.fragmentcontainerview.FragmentContainerViewActivity
 import com.android.topic.practice.lifecycle.activity.FirstActivity
 import com.android.topic.practice.lifecycle.fragment.ActivityToOpenFragment
+import com.android.topic.practice.thread_and_coroutines.CoroutineActivity
+import com.android.topic.practice.thread_and_coroutines.ThreadActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -30,6 +32,14 @@ class MainActivity : AppCompatActivity() {
 
             openFragmentContainerView.setOnClickListener {
                 openScreen(FragmentContainerViewActivity::class.java)
+            }
+
+            openThreadActivity.setOnClickListener {
+                openScreen(ThreadActivity::class.java)
+            }
+
+            openCoroutineActivity.setOnClickListener {
+                openScreen(CoroutineActivity::class.java)
             }
         }
     }
